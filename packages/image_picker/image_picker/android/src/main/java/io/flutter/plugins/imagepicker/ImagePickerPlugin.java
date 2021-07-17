@@ -30,7 +30,8 @@ public class ImagePickerPlugin
 
   private class LifeCycleObserver
       implements Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
-    private final Activity thisActivity;
+
+    private Activity thisActivity;
 
     LifeCycleObserver(Activity activity) {
       this.thisActivity = activity;
@@ -214,6 +215,8 @@ public class ImagePickerPlugin
     channel = null;
     application.unregisterActivityLifecycleCallbacks(observer);
     application = null;
+    observer.thisActivity = null;
+    activity = null;
   }
 
   @VisibleForTesting
